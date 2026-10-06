@@ -72,3 +72,34 @@
 .m4xPlayerTop{display:flex;align-items:center;gap:13px}.m4xCover{width:64px;height:64px;border-radius:15px;object-fit:cover;flex:none;border:1px solid rgba(255,255,255,.08)}.m4xCoverFallback{display:grid;place-items:center;font-size:25px;background:rgba(139,92,246,.12)}
 .m4xTrack{min-width:0;display:flex;flex-direction:column;gap:3px;flex:1}.m4xTrack b{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.m4xTrack small{opacity:.58;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.m4xTrack span{font:700 8px/1 monospace;letter-spacing:.16em;color:#a78bfa;margin-top:4px}
 .m4xPlay{width:48px;height:48px;border:0;border-radius:50%;display:grid;place-items:center;background:#f4f4f5;color:#09090b;font-size:17px;font-weight:900;cursor:pointer}.m4xProgress{display:grid;grid-template-columns:35px 1fr 35px;gap:8px;align-items:center;margin-top:15px}.m4xProgress span{font:10px monospace;opacity:.55}.m4xProgress span:last-child{text-align:right}.m4xProgress input,.m4xVolume input{width:100%;accent-color:#a78bfa}.m4xVolume{display:grid;grid-template-columns:28px 100px;gap:8px;align-items:center;justify-content:end;margin-top:7px}.m4xVolume span{font:8px monospace;letter-spacing:.12em;opacity:.45}.musicUploads{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}.musicCoverPreview{width:92px;height:92px;object-fit:cover;border-radius:16px;margin-top:10px;border:1px solid rgba(255,255,255,.1)}
+
+/* ===== M4X CODE OS ===== */
+:root{--os-bg:#05080d;--os-panel:#0b1118;--os-line:#202b39;--os-cyan:#58d6ff;--os-green:#69f0ae;--os-violet:#b692ff}
+body{background:var(--os-bg)!important}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.28;background-image:linear-gradient(rgba(88,214,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(88,214,255,.025) 1px,transparent 1px);background-size:32px 32px}
+main{position:relative}
+.hero,.status,.links>a,.card,.m4xPlayer,.publicProduct,.create{border-color:var(--os-line)!important;background:linear-gradient(135deg,rgba(88,214,255,.045),transparent 45%),var(--os-panel)!important;box-shadow:0 18px 60px rgba(0,0,0,.32)!important}
+.hero{position:relative;overflow:hidden;border-radius:20px!important}
+.hero:before{content:"profile.tsx";position:absolute;top:0;left:0;right:0;padding:9px 14px;border-bottom:1px solid var(--os-line);background:#090e14;color:#718095;font:9px 'Space Mono',monospace;letter-spacing:.8px}
+.hero>*{position:relative}
+.name{letter-spacing:-1.5px!important}
+.name:after{content:"_";color:var(--os-cyan);animation:blink 1s infinite}
+.handle,.label{font-family:'Space Mono',monospace!important}
+.label{color:var(--os-cyan)!important}
+.tech span{background:#0e1620!important;border-color:#263343!important;color:#8da0b6!important}
+.online{color:var(--os-green)!important;border-color:rgba(105,240,174,.2)!important;background:rgba(105,240,174,.05)!important}
+.links>a{border-radius:10px!important;transition:.18s ease!important}
+.links>a:hover{transform:translateY(-2px);border-color:#38516a!important}
+.socialIcon{background:#0f1822!important;border-color:#263343!important;color:var(--os-cyan)!important}
+.publicProducts{gap:12px!important}
+.publicProduct{border-radius:14px!important}
+.buyPill,.create>a{background:var(--os-cyan)!important;color:#061015!important;font-family:'Space Mono',monospace!important}
+.create{position:relative;overflow:hidden}
+.create:before{content:"TERMINAL  OUTPUT  PROBLEMS 0";display:block;margin:-1px -1px 22px;padding:10px 14px;border-bottom:1px solid var(--os-line);color:#647184;background:#070b10;font:8px 'Space Mono',monospace;letter-spacing:.6px}
+footer{font-family:'Space Mono',monospace}
+@media(max-width:600px){
+ body{background:#05080d!important}
+ .hero{border-radius:14px!important;padding-top:52px!important}
+ .publicProducts{grid-template-columns:1fr!important}
+ .links>a{border-radius:9px!important}
+}
