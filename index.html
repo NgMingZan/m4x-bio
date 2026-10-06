@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nguyễn Minh Dân - M4X STORE</title>
+<style>
+*{box-sizing:border-box} :root{--bg:#090d12;--p:#0f151d;--p2:#161d27;--bd:#293241;--tx:#c9d1d9;--mu:#718096;--g:#7ee787;--b:#58a6ff;--r:#ff7b72;--pu:#d2a8ff;--s:#a5d6ff;--hl:#1f2937}
+body{margin:0;background:radial-gradient(circle at 50% -15%,#17253a 0,#090d12 38%);color:var(--tx);font-family:ui-monospace,SFMono-Regular,Consolas,monospace;padding:14px;min-height:100vh}
+.wrap{max-width:1050px;margin:auto}.status{display:flex;justify-content:space-between;font-size:12px;color:var(--mu);padding:7px 2px 14px}.logo{color:var(--g);font-weight:900}.on:before{content:"";display:inline-block;width:7px;height:7px;background:var(--g);border-radius:50%;box-shadow:0 0 10px var(--g);margin-right:7px}
+.win{border:1px solid var(--bd);background:#0f151deb;border-radius:13px;overflow:hidden;box-shadow:0 24px 70px #0009;margin-bottom:18px}.bar{height:43px;background:var(--p2);border-bottom:1px solid var(--bd);display:flex;align-items:center;padding:0 13px}.dots{display:flex;gap:6px}.dot{width:10px;height:10px;border-radius:50%}.rr{background:#ff5f56}.yy{background:#ffbd2e}.gg{background:#27c93f}.file{margin:auto;color:#7d8590;font-size:11px}.body{padding:20px}.code{line-height:1.8;font-size:13px}.muted{color:var(--mu)}.red{color:var(--r)}.blue{color:var(--b)}.green{color:var(--g)}.purple{color:var(--pu)}.str{color:var(--s)}
+.hero{padding:20px;margin:18px 0;border:1px solid var(--bd);border-radius:10px;background:linear-gradient(135deg,#101923,#0c1118)}.hero h1{font:800 28px/1.08 system-ui;margin:0;color:#fff}.hero p{font:14px/1.55 system-ui;color:#8491a3;max-width:650px;margin-top:8px}.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.tag{font-size:10px;padding:5px 8px;border:1px solid var(--bd);border-radius:20px;color:#8794a5}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.card{padding:15px;border:1px solid var(--bd);border-radius:10px;background:#0b1118;transition:.2s}.card:hover{border-color:var(--b);transform:translateY(-2px)}.path{font-size:10px;color:#687486}.card h3{color:white;margin:10px 0 12px;font-size:15px}.row{display:flex;justify-content:space-between;gap:12px;margin:6px 0}.price{color:var(--g);font-weight:900}.cmd{width:100%;margin-top:12px;padding:10px;border:1px solid #334052;border-radius:7px;background:#090d12;color:var(--b);font:12px inherit;text-align:left;cursor:pointer;transition:.2s}.cmd:hover{border-color:var(--b);background:#0d1723}
+.term{line-height:1.8;font-size:12px}
+.term-input-wrap{display:flex;align-items:center}
+.term-input{background:transparent;border:none;color:var(--tx);font-family:inherit;font-size:inherit;width:100%;outline:none;padding:0;margin-left:8px}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}
+.btn-link{display:inline-flex;align-items:center;padding:8px 16px;border:1px solid var(--bd);border-radius:6px;color:#fff;text-decoration:none;font-size:12px;background:var(--p2);transition:.2s}
+.btn-link:hover{border-color:var(--pu);background:var(--hl)}
+.modal{display:none;position:fixed;inset:0;background:#000c;z-index:9;align-items:center;justify-content:center;padding:14px;backdrop-filter:blur(4px)}.modal.show{display:flex}.box{width:min(580px,100%);max-height:92vh;overflow:auto;background:#090d12;border:1px solid var(--bd);border-radius:13px;box-shadow:0 10px 40px #000}.close{margin-left:auto;border:0;background:none;color:#8b949e;font-size:21px;cursor:pointer;padding:0 5px}.pay{padding:25px}.qr{width:180px;height:180px;margin:20px auto;background:#fff;border-radius:8px;display:grid;place-items:center;color:#000;font:800 14px system-ui; overflow:hidden;}.qr img{width:100%;height:100%;object-fit:contain;}.panel{border:1px solid var(--bd);padding:14px;border-radius:8px;line-height:1.9;font-size:12px;background:#0b1118;margin-bottom:15px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:15px 0}.stat{border:1px solid var(--bd);padding:15px;border-radius:8px;background:#0b1118;text-align:center}.stat strong{display:block;color:var(--g);font-size:22px;margin-top:5px}
+.tech-stack{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:10px 0;padding-left:20px}
+@media(max-width:650px){body{padding:8px}.body{padding:14px}.grid,.stats{grid-template-columns:1fr}.hero{padding:16px}.hero h1{font-size:23px}.tech-stack{grid-template-columns:1fr}}
+</style></head>
+<body><div class="wrap">
+<div class="status"><span class="logo">M4X STORE_</span><span class="on">HỆ THỐNG ONLINE</span></div>
+
+<!-- 1. CỬA SỔ PROFILE & BIO -->
+<section class="win"><header class="bar"><div class="dots"><i class="dot rr"></i><i class="dot yy"></i><i class="dot gg"></i></div><span class="file">M4X_STORE / ho_so.json</span></header>
+<div class="body code">
+<div><span class="muted">// thông tin người sáng lập</span></div>
+<div><span class="red">const</span> thong_tin = {</div>
+<div style="padding-left: 20px;">
+    <div><span class="blue">tên</span>: <span class="str">"Nguyễn Minh Dân"</span>,</div>
+    <div><span class="blue">chức_vụ</span>: <span class="str">"Người sáng lập @ M4X STORE"</span>,</div>
+    <div><span class="blue">nơi_sống</span>: <span class="str">"Đà Lạt, Việt Nam"</span>,</div>
+    <div><span class="blue">kỹ_năng</span>: [</div>
+    <div class="tech-stack">
+        <div><span class="str">"Giao diện Xiaomi (XML/Manifest)"</span>,</div>
+        <div><span class="str">"Tự động hóa PLC (GX Works2)"</span>,</div>
+        <div><span class="str">"Python / FastAPI"</span>,</div>
+        <div><span class="str">"Công cụ AI (PaddleOCR, LaMa)"</span></div>
+    </div>
+    <div>]</div>
+</div>
+<div>};</div>
+
+<div class="hero">
+    <h1>Giải pháp công nghệ.<br>Tối ưu và hoàn hảo.</h1>
+    <p>Chuyên phát triển dịch vụ số, giao diện tùy biến di động, công cụ AI và hệ thống tự động hóa công nghiệp. Mọi thứ được xây dựng tinh gọn như một dòng code.</p>
+    <div class="tags">
+        <span class="tag">● LẬP TRÌNH VIÊN</span>
+        <span class="tag">⚡ TỰ ĐỘNG HÓA</span>
+        <span class="tag">✓ THIẾT KẾ GIAO DIỆN</span>
+    </div>
+    <div class="links">
+        <a href="https://github.com/NgMingZan" target="_blank" class="btn-link">{" "}GitHub</a>
+        <a href="https://t.me/M4X_STORE_BOT" target="_blank" class="btn-link">{" "}M4X Telegram Bot</a>
+        
+        <!-- [THAY_LINK_ZALO_Ở_ĐÂY] -->
+        <a href="https://zalo.me/SĐT_CỦA_BẠN" class="btn-link" target="_blank">{" "}Liên hệ Zalo</a>
+        
+    </div>
+</div>
+</div></section>
+
+<!-- 2. CỬA SỔ CỬA HÀNG SẢN PHẨM -->
+<section class="win"><header class="bar"><div class="dots"><i class="dot rr"></i><i class="dot yy"></i><i class="dot gg"></i></div><span class="file">M4X_STORE / cua_hang.js</span></header>
+<div class="body code">
+<div><span class="muted">// danh sách dịch vụ và sản phẩm</span></div>
+<div><span class="red">export const</span> <span class="purple">san_pham</span> = [</div><br>
+<div class="grid">
+    <article class="card"><div class="path">dich_vu/hyperos-theme.mtz</div><h3>Tùy biến HyperOS / MIUI</h3><div class="row"><span class="blue">trạng_thái</span><span class="str">"SẴN SÀNG"</span></div><div class="row"><span class="blue">loại</span><span class="str">"Custom XML/Manifest"</span></div><div class="row"><span class="blue">giá</span><span class="price">Liên hệ</span></div><button class="cmd" onclick="mua('Dịch vụ Tùy biến HyperOS Theme','Liên hệ')">&gt; mua_ngay()</button></article>
+    <article class="card"><div class="path">dich_vu/plc-logic.gx</div><h3>PLC Logic & Tự động hóa</h3><div class="row"><span class="blue">trạng_thái</span><span class="str">"SẴN SÀNG"</span></div><div class="row"><span class="blue">nền_tảng</span><span class="str">"Mitsubishi FX"</span></div><div class="row"><span class="blue">giá</span><span class="price">Liên hệ</span></div><button class="cmd" onclick="mua('Lập trình PLC Logic Script','Liên hệ')">&gt; mua_ngay()</button></article>
+    <article class="card"><div class="path">san_pham/ai-web-app.py</div><h3>Công cụ ảnh AI (Mã nguồn)</h3><div class="row"><span class="blue">trạng_thái</span><span class="str">"SẴN SÀNG"</span></div><div class="row"><span class="blue">công_nghệ</span><span class="str">"LaMa/OCR"</span></div><div class="row"><span class="blue">giá</span><span class="price">250.000đ</span></div><button class="cmd" onclick="mua('AI Image Tools (LaMa/OCR)','250.000đ')">&gt; mua_ngay()</button></article>
+    <article class="card"><div class="path">san_pham/m4x-digital-pack.json</div><h3>Gói phần mềm M4X</h3><div class="row"><span class="blue">trạng_thái</span><span class="str">"SẴN SÀNG"</span></div><div class="row"><span class="blue">giao_hàng</span><span class="str">"TẢI XUỐNG"</span></div><div class="row"><span class="blue">giá</span><span class="price">49.000đ</span></div><button class="cmd" onclick="mua('Gói phần mềm M4X','49.000đ')">&gt; mua_ngay()</button></article>
+</div><br><div>];</div>
+<button class="cmd" style="margin-top: 20px; border-color: var(--pu)" onclick="quan_tri.mo_cua_so()">&gt; mo_bang_quan_tri()</button>
+</div></section>
+
+<!-- 3. CỬA SỔ TERMINAL TƯƠNG TÁC -->
+<section class="win"><header class="bar"><div class="dots"><i class="dot rr"></i><i class="dot yy"></i><i class="dot gg"></i></div><span class="file">terminal — m4x-hethong</span></header><div class="body term" id="term-container">
+    <div><span class="green">m4x@store:~$</span> khoi_dong_he_thong</div>
+    <div class="muted">✓ đã tải hồ sơ: Nguyễn Minh Dân (Đà Lạt)</div>
+    <div class="muted">✓ dịch vụ: m4x-telegram-bot [đang chạy]</div>
+    <div class="muted">✓ cổng_thanh_toán: VPBank eKYC [hoạt động]</div>
+    <div class="green">✓ Hệ thống sẵn sàng. Gõ 'trogiup' để xem các lệnh.</div>
+    
+    <div id="term-output"></div>
+    <div class="term-input-wrap">
+        <span class="green">m4x@store:~$</span>
+        <input type="text" class="term-input" id="cmd-input" autocomplete="off" spellcheck="false" autofocus>
+    </div>
+</div></section>
+</div>
+
+<!-- MODAL: THANH TOÁN -->
+<div class="modal" id="thanh-toan"><div class="box"><header class="bar"><div class="dots"><i class="dot rr"></i><i class="dot yy"></i><i class="dot gg"></i></div><span class="file">thanh_toan.sh</span><button class="close" onclick="thanh_toan.dong_cua_so()">×</button></header>
+<div class="pay">
+    <div class="term"><span class="green">$</span> khoi_tao_cong_thanh_toan(VPBANK)</div>
+    <div class="panel" id="don-hang" style="margin-top: 15px;"></div>
+    
+    <div style="text-align: center; margin: 20px 0;">
+        <div class="qr">
+            <!-- [THAY_LINK_ẢNH_QR_Ở_ĐÂY] Dán link ảnh mã QR VPBank của bạn vào phần src="..." bên dưới -->
+            <img src="https://via.placeholder.com/180?text=QR+VPBank" alt="QR VPBank">
+        </div>
+        <div style="color: var(--tx); font-size: 13px; margin-top: 10px;">
+            Ngân hàng: <strong>VPBank</strong><br>
+            
+            <!-- [THAY_SỐ_TÀI_KHOẢN_Ở_ĐÂY] -->
+            STK: <strong>[NHẬP SỐ TÀI KHOẢN CỦA BẠN]</strong><br>
+            
+            Tên: <strong>NGUYEN MINH DAN</strong>
+        </div>
+    </div>
+    
+    <div class="panel">
+        <div><span class="green">$</span> kiem_tra_giao_dich()</div>
+        <div class="muted">Đang chờ thanh toán... Vui lòng ghi rõ Mã Đơn Hàng trong nội dung chuyển khoản.</div>
+    </div>
+</div>
+</div></div>
+
+<!-- MODAL: QUẢN TRỊ -->
+<div class="modal" id="quan-tri"><div class="box"><header class="bar"><div class="dots"><i class="dot rr"></i><i class="dot yy"></i><i class="dot gg"></i></div><span class="file">bang_quan_tri</span><button class="close" onclick="quan_tri.dong_cua_so()">×</button></header>
+<div class="pay term">
+    <div><span class="green">&gt;</span> lay_thong_ke()</div>
+    <div class="stats">
+        <div class="stat"><span class="muted">sản_phẩm</span><strong>12</strong></div>
+        <div class="stat"><span class="muted">người_dùng</span><strong>284</strong></div>
+        <div class="stat"><span class="muted">tổng_đơn</span><strong>97</strong></div>
+    </div>
+    <div class="panel">
+        <div><span class="blue">doanh_thu_tháng:</span> <span class="str">"8.420.000đ"</span></div>
+        <div><span class="blue">trạng_thái_dữ_liệu:</span> <span class="green">"ĐÃ KẾT NỐI AN TOÀN"</span></div>
+        <div><span class="blue">quyền_quản_trị:</span> <span class="str">"ADMIN_TỐI_CAO"</span></div>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <button class="cmd">&gt; quan_ly_san_pham()</button>
+        <button class="cmd">&gt; xem_don_hang()</button>
+        <button class="cmd">&gt; du_lieu_khach_hang()</button>
+        <button class="cmd">&gt; nhat_ky_he_thong()</button>
+    </div>
+</div>
+</div></div>
+
+<script>
+// Logic cho Modal
+const thanh_toan = { el: document.getElementById('thanh-toan'), dong_cua_so() { this.el.classList.remove('show') } };
+const quan_tri = { el: document.getElementById('quan-tri'), mo_cua_so() { this.el.classList.add('show') }, dong_cua_so() { this.el.classList.remove('show') } };
+
+function mua(ten_san_pham, gia_tien){
+    const ma_don = 'M4X-' + Math.random().toString(36).slice(2,8).toUpperCase();
+    document.getElementById('don-hang').innerHTML = `
+        <div><span class="blue">sản_phẩm:</span> <span class="str">"${ten_san_pham}"</span></div>
+        <div><span class="blue">số_tiền:</span> <span class="str">"${gia_tien}"</span></div>
+        <div><span class="blue">mã_đơn_hàng:</span> <span class="str">"${ma_don}"</span> <span class="muted">// Ghi mã này vào nội dung CK</span></div>
+        <div><span class="blue">cổng_thanh_toán:</span> <span class="str">"VPBANK_EKYC"</span></div>
+    `;
+    thanh_toan.el.classList.add('show');
+}
+
+// Đóng modal khi click ra ngoài
+document.querySelectorAll('.modal').forEach(x => x.addEventListener('click', e => { if(e.target === x) x.classList.remove('show') }));
+
+// Logic cho Terminal Tương Tác
+const termInput = document.getElementById('cmd-input');
+const termOutput = document.getElementById('term-output');
+const termContainer = document.getElementById('term-container');
+
+termInput.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        const command = termInput.value.trim().toLowerCase();
+        let response = '';
+        
+        if (command === 'trogiup') {
+            response = 'Các lệnh khả dụng: <br>- <span class="blue">thongtin</span>: Hiện thông tin M4X STORE<br>- <span class="blue">kynang</span>: Danh sách công nghệ<br>- <span class="blue">lienhe</span>: Lấy thông tin liên hệ<br>- <span class="blue">xoa</span>: Xóa màn hình terminal';
+        } else if (command === 'thongtin') {
+            response = 'M4X STORE - Được phát triển bởi Nguyễn Minh Dân.<br>Địa điểm: Đà Lạt. Chuyên cung cấp giải pháp tự động hóa và thiết kế giao diện.';
+        } else if (command === 'kynang') {
+            response = 'Công nghệ sử dụng: [XML Xiaomi, PLC GX Works2, Python, FastAPI, PaddleOCR]';
+        } else if (command === 'lienhe') {
+            // [THAY_SĐT_ZALO_Ở_ĐÂY_CHO_TERMINAL]
+            response = 'GitHub: github.com/NgMingZan <br>Zalo: [Nhập số của bạn]';
+        } else if (command === 'xoa') {
+            termOutput.innerHTML = '';
+            termInput.value = '';
+            return;
+        } else if (command !== '') {
+            response = `<span class="red">lỗi: lệnh '${command}' không tồn tại</span>. Gõ 'trogiup' để xem danh sách lệnh.`;
+        }
+
+        if (command !== '') {
+            const outputHTML = `
+                <div><span class="green">m4x@store:~$</span> ${command}</div>
+                <div style="margin-bottom: 8px;">${response}</div>
+            `;
+            termOutput.insertAdjacentHTML('beforeend', outputHTML);
+        }
+        
+        termInput.value = '';
+        termContainer.scrollTop = termContainer.scrollHeight;
+    }
+});
+
+termContainer.addEventListener('click', () => {
+    termInput.focus();
+});
+</script></body></html>
