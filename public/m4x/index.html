@@ -66,6 +66,20 @@
         @media (max-width: 600px) { .profile-flex { flex-direction: column; text-align: center; } .qr-wrap { flex-direction: column; } }
     </style>
     <script src="config.js"></script>
+
+<script>
+/* M4X boot fail-safe */
+setTimeout(function () {
+    var boot = document.getElementById('boot-screen');
+    if (boot) {
+        boot.style.opacity = '0';
+        setTimeout(function () {
+            boot.style.display = 'none';
+        }, 400);
+    }
+}, 1800);
+</script>
+
 </head>
 <body>
 
