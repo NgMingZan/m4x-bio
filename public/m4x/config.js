@@ -4,7 +4,7 @@
     profile:{name:'Nguyễn Minh Dân',bio:'Developer & SysAdmin. Chuyên Giao diện HyperOS, PLC Automation và AI Web Tools.',avatarText:'MD',avatarUrl:'',status:'SYSTEM_ONLINE'},
     socials:[{icon:'💻',label:'GitHub',url:'https://github.com/NgMingZan'},{icon:'✈️',label:'Telegram',url:'https://t.me/M4X_STORE_BOT'},{icon:'💬',label:'Zalo',url:'https://zalo.me/0123456789'}],
     theme:{accent:'#00f0ff',purple:'#7000ff',success:'#00cc66'},
-    music:{url:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'},
+    mhttps://youtu.be/Gl4w-l-lAH0'},
     bank:{bank:'VPBANK',account:'0123456789',name:'NGUYEN MINH DAN',qr:'https://via.placeholder.com/150?text=QR+VPBank'},
     products:[
       {title:'Tùy biến HyperOS / MIUI',price:'Liên hệ',desc:'Thiết kế theme độc quyền, can thiệp XML/Manifest, setup Dynamic Island.',icon:'🎨',image:''},
