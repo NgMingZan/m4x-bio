@@ -5,9 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "build:cloudflare": "opennextjs-cloudflare build"
   },
   "dependencies": {
+    "@esbuild/android-arm": "^0.25.4",
     "@supabase/ssr": "latest",
     "@supabase/supabase-js": "latest",
     "next": "15.5.27",
@@ -18,6 +20,7 @@
     "@next/swc-wasm-nodejs": "^15.5.7",
     "@types/node": "latest",
     "@types/react": "latest",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "@opennextjs/cloudflare": "^1.14.8"
   }
 }
