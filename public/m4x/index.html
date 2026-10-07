@@ -66,20 +66,6 @@
         @media (max-width: 600px) { .profile-flex { flex-direction: column; text-align: center; } .qr-wrap { flex-direction: column; } }
     </style>
     <script src="config.js"></script>
-
-<script>
-/* M4X boot fail-safe */
-setTimeout(function () {
-    var boot = document.getElementById('boot-screen');
-    if (boot) {
-        boot.style.opacity = '0';
-        setTimeout(function () {
-            boot.style.display = 'none';
-        }, 400);
-    }
-}, 1800);
-</script>
-
 </head>
 <body>
 
@@ -229,117 +215,21 @@ setTimeout(function () {
             }, 1400);
         });
 
-        // YOUTUBE MUSIC PLAYER
+        // NHẠC NỀN (Bạn đổi link file mp3 ở đây)
         const musicUrl = siteConfig.music.url;
+        let audio = new Audio(musicUrl); audio.loop = true; let isPlaying = false;
         const mWidget = document.getElementById('music-widget');
-
-        let ytPlayer = null;
-        let ytReady = false;
-        let isPlaying = false;
-
-        function getYouTubeId(url) {
-            if (!url) return '';
-
-            try {
-                const u = new URL(url);
-
-                if (u.hostname.includes('youtu.be')) {
-                    return u.pathname.split('/').filter(Boolean)[0] || '';
-                }
-
-                if (u.hostname.includes('youtube.com')) {
-                    if (u.pathname === '/watch') {
-                        return u.searchParams.get('v') || '';
-                    }
-
-                    const parts = u.pathname.split('/').filter(Boolean);
-
-                    if (
-                        ['shorts', 'embed', 'live'].includes(parts[0]) &&
-                        parts[1]
-                    ) {
-                        return parts[1];
-                    }
-                }
-            } catch (e) {}
-
-            // Cho phép nhập thẳng VIDEO_ID
-            if (/^[A-Za-z0-9_-]{11}$/.test(url.trim())) {
-                return url.trim();
-            }
-
-            return '';
-        }
-
-        const youtubeId = getYouTubeId(musicUrl);
-
-        // Player YouTube ẩn
-        const ytBox = document.createElement('div');
-        ytBox.id = 'youtube-player';
-        ytBox.style.cssText =
-            'position:fixed;width:1px;height:1px;left:-9999px;top:-9999px;pointer-events:none;';
-        document.body.appendChild(ytBox);
-
-        if (youtubeId) {
-            const tag = document.createElement('script');
-            tag.src = 'https://www.youtube.com/iframe_api';
-            document.head.appendChild(tag);
-
-            window.onYouTubeIframeAPIReady = function () {
-                ytPlayer = new YT.Player('youtube-player', {
-                    width: '1',
-                    height: '1',
-                    videoId: youtubeId,
-                    playerVars: {
-                        autoplay: 0,
-                        controls: 0,
-                        disablekb: 1,
-                        playsinline: 1,
-                        rel: 0
-                    },
-                    events: {
-                        onReady: function () {
-                            ytReady = true;
-                            document.getElementById('m-status').innerText = 'READY';
-                        },
-
-                        onStateChange: function (event) {
-                            if (event.data === YT.PlayerState.PLAYING) {
-                                isPlaying = true;
-                                mWidget.classList.add('playing');
-                                document.getElementById('m-status').innerText = 'PLAYING';
-                            }
-
-                            if (
-                                event.data === YT.PlayerState.PAUSED ||
-                                event.data === YT.PlayerState.CUED
-                            ) {
-                                isPlaying = false;
-                                mWidget.classList.remove('playing');
-                                document.getElementById('m-status').innerText = 'PAUSED';
-                            }
-
-                            // Loop
-                            if (event.data === YT.PlayerState.ENDED) {
-                                ytPlayer.seekTo(0);
-                                ytPlayer.playVideo();
-                            }
-                        }
-                    }
-                });
-            };
-        } else {
-            document.getElementById('m-status').innerText = 'NO MUSIC';
-        }
-
-        mWidget.addEventListener('click', function () {
-            if (!ytReady || !ytPlayer) return;
-
-            if (isPlaying) {
-                ytPlayer.pauseVideo();
-            } else {
-                ytPlayer.playVideo();
-            }
+        
+        document.body.addEventListener('click', () => { 
+            if (!isPlaying && musicUrl) { 
+                audio.play().then(() => { isPlaying = true; mWidget.classList.add('playing'); document.getElementById('m-status').innerText = "PLAYING"; }).catch(()=>{}); 
+            } 
+        }, { once: true });
+        
+        mWidget.addEventListener('click', (e) => { 
+            e.stopPropagation(); 
+            if(isPlaying){ audio.pause(); isPlaying=false; mWidget.classList.remove('playing'); document.getElementById('m-status').innerText="PAUSED"; } 
+            else { audio.play(); isPlaying=true; mWidget.classList.add('playing'); document.getElementById('m-status').innerText="PLAYING"; }
         });
 
         // HIỆU ỨNG 3D COVERFLOW (XẾP CHỒNG SẢN PHẨM)
