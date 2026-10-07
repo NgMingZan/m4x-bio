@@ -3,22 +3,72 @@ import ProductShop from './product-shop';
 import Link from 'next/link';
 import {supabaseServer} from '@/lib/supabase/server';
 import {notFound} from 'next/navigation';
+
 export const dynamic='force-dynamic';
+
 export default async function Public({params}:{params:Promise<{username:string}>}){
- const {username}=await params; const s=await supabaseServer();
- const {data:p}=await s.from('profiles').select('*').eq('username',username).single(); if(!p)notFound();
- const [{data:links},{data:products}]=await Promise.all([
-  s.from('links').select('*').eq('profile_username',username).eq('visible',true).order('sort'),
-  s.from('products').select('*').eq('user_id',p.id).eq('visible',true).order('created_at')
- ]);
- const initials=(p.display_name||p.username).slice(0,2).toUpperCase();
- return <main className="bioShell">
-  <div className="terminal"><b>bash</b> — {p.username}@m4x:~ <span>▋</span></div>
-  <section className="hero"><div className="avatarWrap">{p.avatar_url?<img className="avatar avatarImg" src={p.avatar_url} alt="avatar"/>:<div className="avatar">{initials}</div>}<div className="frame"/><i className="dot"/></div><h1 className="name">{p.display_name} <em>✦</em></h1><div className="handle">@{p.username} · Việt Nam</div><div className="tech"><span>C++</span><span>JS</span><span>HTML</span><span>CSS</span><span>Git</span></div><p className="intro">{p.bio||'Chưa có giới thiệu.'}</p></section>
-  <section className="section"><p className="label">STATUS</p><div className="status"><div className="mini">{initials}</div><div><b>{p.display_name}</b><small>{p.status_text||'Đang online · Có thể nhắn mình'}</small></div><span className="online">● ONLINE</span></div></section>
-  {p.music_url&&<section className="section"><p className="label">MUSIC · PLAYER</p><MusicPlayer title={p.music_title||'Music'} artist={p.music_artist||p.display_name} url={p.music_url} cover={p.music_cover_url}/></section>}
-  <section className="section"><p className="label">MẠNG XÃ HỘI · {links?.length||0}</p><div className="links">{links?.map(x=><a href={x.url} target="_blank" rel="noreferrer" key={x.id}><span className="socialIcon">{x.label.slice(0,1)}</span><span><b>{x.label}</b><small>{x.url}</small></span><i>↗</i></a>)}</div>{p.qr_url&&<div className="card donatePublic"><b>☕ Ủng hộ / VietQR</b><img className="qrPreview" src={p.qr_url} alt="VietQR"/><small>{p.bank_name} · {p.bank_account} · {p.bank_holder}</small></div>}</section>
-  {p.shop_enabled&&<section className="section"><p className="label">SẢN PHẨM · {products?.length||0}</p><ProductShop products={products || []} profile={p}/></section>}
-  <section className="create"><div className="spark">✦</div><h2>Tạo Bio của riêng bạn</h2><p>Tạo trang cá nhân M4X BIO của bạn.</p><Link href="/register">Tạo Bio miễn phí →</Link><small>ĐÃ CÓ TÀI KHOẢN? <Link href="/login">ĐĂNG NHẬP</Link></small></section><footer>© 2026 {p.display_name} · Built with M4X BIO</footer>
- </main>
+  const {username}=await params;
+  const s=await supabaseServer();
+  const {data:p}=await s.from('profiles').select('*').eq('username',username).single();
+  if(!p) notFound();
+
+  const [{data:links},{data:products}]=await Promise.all([
+    s.from('links').select('*').eq('profile_username',username).eq('visible',true).order('sort'),
+    s.from('products').select('*').eq('user_id',p.id).eq('visible',true).order('created_at')
+  ]);
+
+  const initials=(p.display_name||p.username).slice(0,2).toUpperCase();
+
+  return <main className="m4xSys">
+    <div className="sysTop">
+      <span>M4X_SYS // PROFILE</span>
+      <span className="sysLive"><i/> SYSTEM_ONLINE</span>
+    </div>
+
+    <section className="sysHero">
+      <div className="sysGlow"/>
+      <div className="sysAvatar">
+        {p.avatar_url?<img src={p.avatar_url} alt="avatar"/>:<b>{initials}</b>}
+        <span/>
+      </div>
+      <div className="sysIdentity">
+        <p className="sysEyebrow">IDENTITY / @{p.username}</p>
+        <h1>{p.display_name}</h1>
+        <p>{p.bio||'Chưa có giới thiệu.'}</p>
+        <div className="sysTags"><span>DEVELOPER</span><span>SYSADMIN</span><span>ONLINE</span></div>
+      </div>
+    </section>
+
+    <section className="sysBlock">
+      <div className="sysTitle"><span>01</span><b>NETWORK_LINKS</b><small>{String(links?.length||0).padStart(2,'0')}</small></div>
+      <div className="sysLinks">
+        {links?.map((x,i)=><a href={x.url} target="_blank" rel="noreferrer" key={x.id}>
+          <span className="sysIndex">{String(i+1).padStart(2,'0')}</span>
+          <div><b>{x.label}</b><small>{x.url}</small></div><i>↗</i>
+        </a>)}
+      </div>
+    </section>
+
+    {p.music_url&&<section className="sysBlock">
+      <div className="sysTitle"><span>02</span><b>AUDIO_STREAM</b><small>LIVE</small></div>
+      <MusicPlayer title={p.music_title||'Music'} artist={p.music_artist||p.display_name} url={p.music_url} cover={p.music_cover_url}/>
+    </section>}
+
+    {p.shop_enabled&&<section className="sysBlock sysShop">
+      <div className="sysTitle"><span>03</span><b>DIGITAL_STORE</b><small>{String(products?.length||0).padStart(2,'0')}</small></div>
+      <ProductShop products={products||[]} profile={p}/>
+    </section>}
+
+    {p.qr_url&&<section className="sysBlock sysDonate">
+      <div className="sysTitle"><span>04</span><b>SUPPORT_NODE</b><small>VQR</small></div>
+      <div className="sysQr"><img src={p.qr_url} alt="VietQR"/><div><b>{p.bank_name}</b><span>{p.bank_account}</span><small>{p.bank_holder}</small></div></div>
+    </section>}
+
+    <section className="sysCreate">
+      <div><span>CREATE_NODE</span><b>Tạo Bio của riêng bạn</b></div>
+      <Link href="/register">KHỞI TẠO →</Link>
+    </section>
+
+    <footer className="sysFooter"><span>© 2026 {p.display_name}</span><span>M4X BIO // BUILD_04</span></footer>
+  </main>
 }
