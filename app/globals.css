@@ -226,3 +226,221 @@ footer{
  .hero{border-radius:12px!important}
  .publicProducts{grid-template-columns:1fr!important}
 }
+
+
+/* ==============================
+   M4X CODE OS — AUTH
+   ============================== */
+
+.authShell{
+  width:100%;
+  max-width:none;
+  min-height:100svh;
+  margin:0;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.authShell:before{
+  display:none;
+}
+
+.authPanel{
+  width:min(100%,460px);
+}
+
+.authPanel:before{
+  content:"●  ●  ●     M4X CODE OS        auth.tsx";
+  display:block;
+  width:100%;
+  padding:14px 16px;
+  margin-bottom:12px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:rgba(9,14,20,.94);
+  color:#718196;
+  font:11px "JetBrains Mono",monospace;
+  letter-spacing:.5px;
+}
+
+.authBrand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:max-content;
+  margin:0 0 14px 4px;
+  color:#e8f0f8;
+  font:700 13px "JetBrains Mono",monospace;
+  letter-spacing:2px;
+}
+
+.authBrand:before{
+  content:">";
+  color:var(--cyan);
+}
+
+.authCard{
+  position:relative;
+  overflow:hidden;
+  padding:30px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:
+    linear-gradient(135deg,rgba(86,214,255,.055),transparent 45%),
+    rgba(11,17,24,.96);
+  box-shadow:0 24px 80px rgba(0,0,0,.45);
+}
+
+.authCard:before{
+  content:"// authentication";
+  display:block;
+  margin:-30px -30px 27px;
+  padding:11px 15px;
+  border-bottom:1px solid var(--line);
+  background:#080d13;
+  color:#65768a;
+  font:10px "JetBrains Mono",monospace;
+}
+
+.authCard .label{
+  margin:0 0 13px;
+  font-size:10px;
+}
+
+.authCard h1{
+  margin:0;
+  color:#edf4fb;
+  font-size:38px;
+  line-height:1.05;
+  letter-spacing:-1.7px;
+}
+
+.authLead{
+  margin:15px 0 26px;
+  color:#8d9caf;
+  font-size:14px;
+  line-height:1.65;
+}
+
+.authCard form{
+  display:grid;
+  gap:15px;
+}
+
+.authCard label{
+  display:grid;
+  gap:8px;
+  color:#aab8c8;
+  font:600 11px "JetBrains Mono",monospace;
+  letter-spacing:.6px;
+}
+
+.authCard input{
+  display:block;
+  width:100%;
+  height:50px;
+  margin:0;
+  padding:0 14px;
+  outline:none;
+  border:1px solid #263545;
+  border-radius:9px;
+  background:#080d13;
+  color:#e8f0f8;
+  font:14px Inter,sans-serif;
+  appearance:none;
+  -webkit-appearance:none;
+  transition:border-color .18s ease,box-shadow .18s ease;
+}
+
+.authCard input::placeholder{
+  color:#536276;
+}
+
+.authCard input:focus{
+  border-color:var(--cyan);
+  box-shadow:0 0 0 3px rgba(86,214,255,.09);
+}
+
+.authCard .btn{
+  width:100%;
+  min-height:50px;
+  margin-top:4px;
+  border:0;
+  border-radius:9px;
+  background:var(--cyan);
+  color:#041016;
+  font:700 13px "JetBrains Mono",monospace;
+  cursor:pointer;
+}
+
+.authCard .btn:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+.authCard .muted{
+  margin:2px 0 0;
+  padding:11px 12px;
+  border:1px solid #29394a;
+  border-radius:8px;
+  background:#090f16;
+  color:#9fb0c1;
+  font-size:12px;
+  line-height:1.5;
+}
+
+.authFoot{
+  margin:23px 0 0;
+  padding-top:19px;
+  border-top:1px solid var(--line);
+  color:#75869a;
+  text-align:center;
+  font-size:13px;
+}
+
+.authFoot a{
+  color:var(--cyan);
+  font-weight:700;
+}
+
+@media(max-width:600px){
+  .authShell{
+    padding:14px;
+    align-items:flex-start;
+  }
+
+  .authPanel{
+    margin-top:10px;
+  }
+
+  .authPanel:before{
+    content:"● ● ●   M4X CODE OS   auth.tsx";
+    padding:13px 14px;
+    font-size:9px;
+  }
+
+  .authCard{
+    padding:23px 18px;
+    border-radius:13px;
+  }
+
+  .authCard:before{
+    margin:-23px -18px 22px;
+  }
+
+  .authCard h1{
+    font-size:34px;
+  }
+
+  .authLead{
+    font-size:13px;
+  }
+
+  .authCard input,
+  .authCard .btn{
+    min-height:52px;
+    font-size:16px;
+  }
+}
