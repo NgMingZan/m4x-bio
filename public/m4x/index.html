@@ -215,21 +215,118 @@
             }, 1400);
         });
 
-        // NHẠC NỀN (Bạn đổi link file mp3 ở đây)
-        const musicUrl = siteConfig.music.url;
-        let audio = new Audio(musicUrl); audio.loop = true; let isPlaying = false;
+        // YOUTUBE MUSIC
+        const musicUrl = siteConfig.music.url || '';
         const mWidget = document.getElementById('music-widget');
-        
-        document.body.addEventListener('click', () => { 
-            if (!isPlaying && musicUrl) { 
-                audio.play().then(() => { isPlaying = true; mWidget.classList.add('playing'); document.getElementById('m-status').innerText = "PLAYING"; }).catch(()=>{}); 
-            } 
-        }, { once: true });
-        
-        mWidget.addEventListener('click', (e) => { 
-            e.stopPropagation(); 
-            if(isPlaying){ audio.pause(); isPlaying=false; mWidget.classList.remove('playing'); document.getElementById('m-status').innerText="PAUSED"; } 
-            else { audio.play(); isPlaying=true; mWidget.classList.add('playing'); document.getElementById('m-status').innerText="PLAYING"; }
+        const mStatus = document.getElementById('m-status');
+
+        let ytPlayer = null;
+        let ytReady = false;
+        let isPlaying = false;
+
+        function getYouTubeId(url) {
+            const value = String(url || '').trim();
+
+            if (/^[A-Za-z0-9_-]{11}$/.test(value)) {
+                return value;
+            }
+
+            try {
+                const u = new URL(value);
+
+                if (u.hostname.includes('youtu.be')) {
+                    return u.pathname.split('/').filter(Boolean)[0] || '';
+                }
+
+                if (u.hostname.includes('youtube.com')) {
+                    const v = u.searchParams.get('v');
+                    if (v) return v;
+
+                    const parts = u.pathname.split('/').filter(Boolean);
+
+                    if (
+                        ['shorts', 'embed', 'live'].includes(parts[0]) &&
+                        parts[1]
+                    ) {
+                        return parts[1];
+                    }
+                }
+            } catch (e) {}
+
+            return '';
+        }
+
+        const youtubeId = getYouTubeId(musicUrl);
+
+        if (youtubeId) {
+            const box = document.createElement('div');
+            box.id = 'm4x-youtube-player';
+            box.style.cssText =
+                'position:fixed;left:-9999px;top:-9999px;width:2px;height:2px;';
+            document.body.appendChild(box);
+
+            window.onYouTubeIframeAPIReady = function () {
+                ytPlayer = new YT.Player('m4x-youtube-player', {
+                    width: '2',
+                    height: '2',
+                    videoId: youtubeId,
+
+                    playerVars: {
+                        autoplay: 0,
+                        controls: 0,
+                        playsinline: 1,
+                        rel: 0
+                    },
+
+                    events: {
+                        onReady: function () {
+                            ytReady = true;
+                            mStatus.innerText = 'READY';
+                        },
+
+                        onStateChange: function (event) {
+                            if (event.data === YT.PlayerState.PLAYING) {
+                                isPlaying = true;
+                                mWidget.classList.add('playing');
+                                mStatus.innerText = 'PLAYING';
+                            }
+
+                            if (event.data === YT.PlayerState.PAUSED) {
+                                isPlaying = false;
+                                mWidget.classList.remove('playing');
+                                mStatus.innerText = 'PAUSED';
+                            }
+
+                            if (event.data === YT.PlayerState.ENDED) {
+                                ytPlayer.seekTo(0);
+                                ytPlayer.playVideo();
+                            }
+                        }
+                    }
+                });
+            };
+
+            const api = document.createElement('script');
+            api.src = 'https://www.youtube.com/iframe_api';
+            document.head.appendChild(api);
+
+        } else {
+            mStatus.innerText = 'NO MUSIC';
+        }
+
+        mWidget.addEventListener('click', function (e) {
+            e.stopPropagation();
+
+            if (!ytReady || !ytPlayer) {
+                mStatus.innerText = 'LOADING';
+                return;
+            }
+
+            if (isPlaying) {
+                ytPlayer.pauseVideo();
+            } else {
+                ytPlayer.playVideo();
+            }
         });
 
         // HIỆU ỨNG 3D COVERFLOW (XẾP CHỒNG SẢN PHẨM)
